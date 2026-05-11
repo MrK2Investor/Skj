@@ -13,3 +13,11 @@ alembic revision --autogenerate -m "create buckets"
 alembic upgrade head
 
  python -m pytest app/tests/test_broker.py -q
+
+py -m uvicorn app.main:app --reload
+
+git clone URL_TVEHO_REPA
+cd nazev-projektu
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
