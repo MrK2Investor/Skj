@@ -1,0 +1,68 @@
+.test-runner-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.test-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.test-summary {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.test-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 900px) {
+  .test-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.test-log {
+  background: #24160f;
+  color: #f6e8d6;
+  border-radius: 14px;
+  padding: 14px;
+  min-height: 420px;
+  max-height: 620px;
+  overflow: auto;
+  font-family: Consolas, monospace;
+  line-height: 1.45;
+}
+
+.log-pass {
+  color: #7df28a;
+}
+
+.log-fail {
+  color: #ff7b7b;
+}
+
+.log-info {
+  color: #ffd37a;
+}
+
+.object-list {
+  margin-top: 12px;
+}
+
+.test-preview {
+  width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  margin-top: 16px;
+  border-radius: 14px;
+  background: #24160f;
+  padding: 8px;
+}
