@@ -256,6 +256,8 @@ export default function TestRunner() {
 
       await deleteObject(uploaded.id);
       pass('DELETE request successful');
+          
+      setFileId(null);
 
       const afterDelete = await listObjects(currentBucketId);
       setObjects(afterDelete);
