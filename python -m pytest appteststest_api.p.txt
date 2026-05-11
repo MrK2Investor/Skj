@@ -1,0 +1,15 @@
+ python -m pytest app/tests/test_api.py -q
+
+alembic revision --autogenerate -m "add queued messages"
+alembic upgrade head
+
+alembic revision --autogenerate -m "add soft delete"
+alembic upgrade head
+
+alembic revision --autogenerate -m "add billing columns"
+alembic upgrade head
+
+alembic revision --autogenerate -m "create buckets"
+alembic upgrade head
+
+ python -m pytest app/tests/test_broker.py -q
