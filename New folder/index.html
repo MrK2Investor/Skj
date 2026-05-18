@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appify Cloud UI</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <ion-app>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Appify Haystack Cloud</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <div class="page">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Nastavení</ion-card-title>
+              <ion-card-subtitle>UI komunikuje jen s Gateway</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-item>
+                <ion-label position="stacked">Gateway URL</ion-label>
+                <ion-input id="gatewayUrl" value="http://localhost:8000"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">User ID</ion-label>
+                <ion-input id="userId" value="demo-user"></ion-input>
+              </ion-item>
+              <div class="row-actions">
+                <ion-button id="saveSettingsBtn">Uložit nastavení</ion-button>
+                <ion-button id="refreshBtn" fill="outline">Refresh vše</ion-button>
+                <ion-button id="loadBillingBtn" fill="outline">Načíst billing</ion-button>
+              </div>
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Upload souboru</ion-card-title>
+              <ion-card-subtitle>POST /upload → Broker → Haystack → storage.ack → billing</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <input id="fileInput" type="file" />
+              <div class="row-actions">
+                <ion-button id="uploadBtn">Nahrát</ion-button>
+              </div>
+              <ion-progress-bar id="uploadProgress" type="indeterminate" class="hidden"></ion-progress-bar>
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Download / Delete / Image process</ion-card-title>
+              <ion-card-subtitle>Vše jde přes Gateway, takže se počítá ingress/egress/billing</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-item>
+                <ion-label position="stacked">Object ID</ion-label>
+                <ion-input id="objectIdInput" placeholder="vloz object_id"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">Image akce</ion-label>
+                <ion-select id="imageAction" value="grayscale" interface="popover">
+                  <ion-select-option value="grayscale">Grayscale / černobílý obrázek</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <div class="row-actions">
+                <ion-button id="downloadBtn" color="success">Stáhnout</ion-button>
+                <ion-button id="processImageBtn" color="tertiary">Upravit jako nový objekt</ion-button>
+                <ion-button id="deleteBtn" color="danger" fill="outline">Soft delete</ion-button>
+              </div>
+              <ion-progress-bar id="processProgress" type="indeterminate" class="hidden"></ion-progress-bar>
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Cloud objekty</ion-card-title>
+              <ion-card-subtitle>Skutečný výpis z Gateway databáze, žádný localStorage fake seznam</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <div id="objectsList"></div>
+            </ion-card-content>
+          </ion-card>
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12" size-md="6">
+                <ion-card>
+                  <ion-card-header><ion-card-title>Billing účet</ion-card-title></ion-card-header>
+                  <ion-card-content><pre id="billingAccount">Zatím nenačteno.</pre></ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col size="12" size-md="6">
+                <ion-card>
+                  <ion-card-header><ion-card-title>Billing eventy</ion-card-title></ion-card-header>
+                  <ion-card-content><pre id="billingEvents">Zatím nenačteno.</pre></ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+          <ion-card>
+            <ion-card-header><ion-card-title>Log</ion-card-title></ion-card-header>
+            <ion-card-content><pre id="logBox"></pre></ion-card-content>
+          </ion-card>
+        </div>
+      </ion-content>
+    </ion-app>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
