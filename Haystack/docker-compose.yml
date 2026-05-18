@@ -1,0 +1,52 @@
+services:
+  broker:
+    build: .
+    command: uvicorn broker.app.main:app --host 0.0.0.0 --port 8001 --reload
+    ports:
+      - "8001:8001"
+    volumes:
+      - .:/app
+    working_dir: /app
+
+  haystack:
+    build: .
+    command: uvicorn haystack_node.app.main:app --host 0.0.0.0 --port 8003 --reload
+    ports:
+      - "8003:8003"
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      BROKER_URL: ws://broker:8001/ws
+      GATEWAY_URL: http://gateway:8000
+      VOLUME_DIR: /app/haystack_node/volumes
+      ADMIN_TOKEN: dev-secret
+    depends_on:
+      - broker
+
+  gateway:
+    build: .
+    command: uvicorn s3_gateway.app.main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      BROKER_URL: ws://broker:8001/ws
+      HAYSTACK_URL: http://haystack:8003
+      ADMIN_TOKEN: dev-secret
+    depends_on:
+      - broker
+      - haystack
+
+  image-worker:
+    build: .
+    command: uvicorn image_worker.app.main:app --host 0.0.0.0 --port 8002 --reload
+    ports:
+      - "8002:8002"
+    volumes:
+      - .:/app
+    working_dir: /app
+    depends_on:
+      - broker

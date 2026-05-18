@@ -1,0 +1,4 @@
+python -m uvicorn broker.app.main:app --reload --port 8001
+python -m uvicorn haystack_node.app.main:app --reload --port 8003
+python -m uvicorn image_worker.app.main:app --reload --port 8002
+python -m uvicorn s3_gateway.app.main:app --reload --port 8000
