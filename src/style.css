@@ -1,0 +1,13 @@
+body { background: #f7f2ee; }
+.page { max-width: 1180px; margin: 0 auto; }
+.row-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; align-items: center; }
+.hidden { display: none; }
+pre { white-space: pre-wrap; word-break: break-word; background: #151515; color: #eee; padding: 12px; border-radius: 10px; max-height: 420px; overflow: auto; }
+input[type="file"] { display: block; margin: 10px 0; }
+.object-row { border: 1px solid #e0c4ad; border-radius: 12px; padding: 14px; margin: 10px 0; display: grid; grid-template-columns: 1fr auto; gap: 16px; background: #fffaf6; }
+.object-title { font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+.object-id { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; color: #666; font-size: 13px; word-break: break-all; }
+.object-meta { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; color: #555; margin: 8px 0; }
+.object-date { color: #777; font-size: 13px; }
+.object-actions { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; align-content: center; }
+@media (max-width: 760px) { .object-row { grid-template-columns: 1fr; } .object-actions { justify-content: flex-start; } }
